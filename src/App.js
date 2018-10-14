@@ -36,8 +36,8 @@ class App extends Component {
     if(this.state.isLoggedIn){
       return (
         <Wrapper>
-            <Activity />
-          </Wrapper>
+          <Activity />
+        </Wrapper>
       );
 
     }
@@ -48,9 +48,10 @@ class App extends Component {
         <Jumbotron />
         <Router>
           <div className="dynamicForm">
+          {/* Passes along handleLogin function as a prop to CreateGame component */}
           <Route exact path="/" render = {() => <CreateGame action={this.handleLogin}/> }/>
-          <Route exact path="/join" component={JoinGame} />
-          <Route exact path="/login" component={LoginGame}/>
+          <Route exact path="/join" render = {() => <JoinGame action={this.handleLogin}/> }/>
+          <Route exact path="/login" render = {() => <LoginGame action={this.handleLogin}/> }/>
           </div>
         </Router>
         </Wrapper>

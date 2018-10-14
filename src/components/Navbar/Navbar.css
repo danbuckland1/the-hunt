@@ -1,0 +1,9 @@
+.navbar, ul{
+    width: 100%;
+}
+
+.nav-item {
+    float: left;
+    width: 25%;
+    text-align: right;
+}

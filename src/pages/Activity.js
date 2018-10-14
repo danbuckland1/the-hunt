@@ -1,21 +1,17 @@
 import React, { Component } from "react";
+import Wrapper from "../components/Wrapper";
+import Navbar from "../components/Navbar";
 
 class Activity extends Component {
 
 render(){
     return (
-        <p>This is the Activity Stream Page</p>
-
-    
-    
-    
-    
-        )
-
-
-
-
-}
+        <Wrapper>
+            <Navbar />
+            <p>Chat/Activity Stream will go here.</p>
+        </Wrapper>
+    );
+};
 
 
 
