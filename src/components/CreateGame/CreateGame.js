@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const CreateGame = props => (
     <div className="Create">
         <h4 className="login-header">Create a Game</h4>
@@ -13,10 +14,12 @@ const CreateGame = props => (
             <input className="form-control" id="team-name"></input>
             <label>Team Password:</label>
             <input className="form-control" id="team-pw"></input>
-        <button type="button" className="btn btn-success" id="play-btn">Let's Play</button>
+        <button onClick={props.action} type="button" className="btn btn-success" id="play-btn">Let's Play</button>
+        
         <p>
             <Link to="/join">Join a Game </Link> 
-            or <Link to="/login">Login</Link></p>
+            or <Link to="/login">Login</Link>
+        </p>
     </div>
 );
 
