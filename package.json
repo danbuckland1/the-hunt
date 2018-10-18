@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "the hunt - it's so amazing -_0",
   "main": "server.js",
+  "private": true,
+  "dependencies": {
+    "firebase": "^5.5.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.4",
+    "express": "^4.16.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,10 +27,5 @@
   "bugs": {
     "url": "https://github.com/danbuckland1/the-hunt/issues"
   },
-  "homepage": "https://github.com/danbuckland1/the-hunt#readme",
-  "dependencies": {
-    "express": "^4.16.4",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
-  }
+  "homepage": "https://github.com/danbuckland1/the-hunt#readme"
 }
