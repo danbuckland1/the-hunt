@@ -15,22 +15,34 @@ class Activity extends Component {
         txt: "",
         chatHistory: {}
     }
+    
 
-    //Will load chat history to window
+    //Will update chatHistory state when component mounts
+    //This will create an object that gets passed along to the StreamChat component 
     componentDidMount() {
+        //Pulls snapshot of firebase
         database.on("value", snapshot => {
-            this.setState({
-                chatHistory: snapshot.val()
-            });
             let log = snapshot.val();
             let keys = Object.keys(log);
-            console.log(keys);
+            //Array that will hold the chat history
+            let newChatHistory = [];
             for (let i = 0; i < keys.length; i++) {
                 let k = keys[i];
                 let teamName = log[k].teamName;
                 let text = log[k].text;
-                console.log(teamName + ": " + text);
+                //Add messages to chatHistory array
+                newChatHistory.push({
+                    id: k,
+                    teamName: teamName,
+                    text: text
+                });
             }
+            //Update state to match the chatHistory
+            this.setState({
+                chatHistory: newChatHistory
+            })
+            //Log what state looks like in console
+            console.log(this.state.chatHistory);
         });
     }
 
@@ -72,20 +84,28 @@ class Activity extends Component {
         });
         console.log("submitted!");
     };
-
-
+    
+    //Renders to page
     render(){
         return (
             <Wrapper>
                 <Navbar />
-                <StreamChat 
-                captureUser={this.captureTeam}
-                captureMsg={this.captureMsg} 
-                handleMsgSubmit={this.handleMsgSubmit}
-                id = {this.keys}
-                user = {this.name}
-                text = {this.text}
-                />
+                    <StreamChat
+                        captureUser={this.captureTeam}
+                        captureMsg={this.captureMsg} 
+                        handleMsgSubmit={this.handleMsgSubmit} 
+                        // key = {key}
+                        details={this.state.chatHistory}
+                        // id={chatHistory.id}
+                        // teamName = {chatHistory.teamName}
+                        // text = {chatHistory.text}
+                        />
+                {/* Piece of code that doens't cause errors */}
+                {/* <StreamChat
+                        captureUser={this.captureTeam}
+                        captureMsg={this.captureMsg} 
+                        handleMsgSubmit={this.handleMsgSubmit}
+                    /> */}
             </Wrapper>
         );
     };

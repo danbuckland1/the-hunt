@@ -1,19 +1,35 @@
-import React from "react";
-import "./StreamChat.css";
+import React, { Component } from "react";
+// import "./StreamChat.css";
 
-const StreamChat = props => (
-    <div className="stream-chat">
-        <div id="streamWindow">
-            <p className="line" id={props.id}>{props.user + ": " + props.text}</p>
-        </div>
-        <hr />
-        <form>
-            <input id="username" placeholder="Name" onBlur={props.captureUser}></input>
-            <input id="message" placeholder="Message" onBlur={props.captureMsg}></input>
-            <button onClick={props.handleMsgSubmit} type="button" className="btn btn-success" id="chat-btn">Send</button>
-        </form>
-    </div>
-);
+class StreamChat extends Component{
+    render(){
+        return (
+            <div className="stream-chat">
+                <div id="streamWindow"> 
+                {Object.keys(this.props.details).map(key => 
+                    
+                        <p key={key}>
+                        {this.props.details[key].teamName + ": " + this.props.details[key].text} 
+                        </p>
+                    
+                    )}
+                </div>
+                <hr />
+                <form>
+                    <input id="username" placeholder="Name" onBlur={this.props.captureUser}></input>
+                    <input id="message" placeholder="Message" onBlur={this.props.captureMsg}></input>
+                    <button onClick={this.props.handleMsgSubmit} type="button" className="btn btn-success" id="chat-btn">Send</button>
+                    </form>
+            </div>
+    
+            )    
+    }
+
+}
+
+
+
+
 
 
 export default StreamChat;
