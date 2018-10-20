@@ -24,9 +24,9 @@ class StreamChat extends Component{
             <div className="stream-chat">
                 <div id="streamWindow" ref={this.myRef}> 
                 {Object.keys(this.props.details).map(key => 
-                            <p key={key} className="chat-messages">
-                            {this.props.details[key].teamName + ": " + this.props.details[key].text} 
-                            </p>
+                    <p key={key} className="chat-messages">
+                    {this.props.details[key].teamName + ": " + this.props.details[key].text} 
+                    </p>
 
                 )}
                 </div>
