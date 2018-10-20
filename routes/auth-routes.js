@@ -2,14 +2,14 @@ var passport = require("passport"),
   OAuthStrategy = require("passport-oauth").OAuthStrategy;
 
 passport.use(
-  "provider",
+  "google",
   new OAuthStrategy(
     {
-      requestTokenURL: "https://www.provider.com/oauth/request_token",
+      requestTokenURL: "https://www.google.com/oauth/request_token",
 
-      accessTokenURL: "https://www.provider.com/oauth/access_token",
+      accessTokenURL: "https://www.google.com/oauth/access_token",
 
-      userAuthorizationURL: "https://www.provider.com/oauth/authorize",
+      userAuthorizationURL: "https://www.google.com/oauth/authorize",
 
       clientKey: keys.google.clientID,
 
