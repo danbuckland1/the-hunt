@@ -42,9 +42,10 @@ class Activity extends Component {
                 chatHistory: newChatHistory
             })
             //Log what state looks like in console
-            console.log(this.state.chatHistory);
+            // console.log(this.state.chatHistory);
         });
     }
+
 
     //Captures Username from input field
     captureTeam = (event) => 
@@ -90,22 +91,22 @@ class Activity extends Component {
         return (
             <Wrapper>
                 <Navbar />
+                 <div className="game-header">
+                     <h5 className="game-name">Game Name (ID#)</h5>
+                     <p className="team-greet">Welcome Team 1</p>
+                     <p className="time"><b>Time Remaining:</b> 00:00:00</p>
+                 </div>
+                 <hr />
+                 <div className="page-header">
+                    <h5>Activity Stream</h5>
+                 </div>
                     <StreamChat
                         captureUser={this.captureTeam}
                         captureMsg={this.captureMsg} 
-                        handleMsgSubmit={this.handleMsgSubmit} 
-                        // key = {key}
-                        details={this.state.chatHistory}
-                        // id={chatHistory.id}
-                        // teamName = {chatHistory.teamName}
-                        // text = {chatHistory.text}
-                        />
-                {/* Piece of code that doens't cause errors */}
-                {/* <StreamChat
-                        captureUser={this.captureTeam}
-                        captureMsg={this.captureMsg} 
                         handleMsgSubmit={this.handleMsgSubmit}
-                    /> */}
+                        details={this.state.chatHistory}
+                        />
+    
             </Wrapper>
         );
     };
