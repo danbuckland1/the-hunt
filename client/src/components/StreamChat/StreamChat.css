@@ -14,5 +14,35 @@
     border-style: solid;
     border-width: 1px;
     border-color: #707070;
+    border-radius: 10px;
+    background-color: white;
+}
+
+form {
+    margin: 10px 0 0 0;
+}
+
+#username{
+    width: 29%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
     border-radius: 5px;
+    margin: 0 2px 0 0;
+}
+
+#message{
+    width: 70%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
+    border-radius: 5px;
+}
+
+#chat-btn {
+    display: block;
+    margin: 1rem auto .5rem auto; 
+    border-radius: 30px;
+    background-color:#5BA276;
+    border-color: #5BA276;
 }

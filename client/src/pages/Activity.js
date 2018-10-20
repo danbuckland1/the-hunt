@@ -91,11 +91,14 @@ class Activity extends Component {
         return (
             <Wrapper>
                 <Navbar />
-                 <div>
-                     <h5>Game Name (ID#)</h5>
-                     <p>Welcome Team 1</p>
-                     <p>Time Remaining: 00:00:00</p>
-                     <hr />
+                 <div className="game-header">
+                     <h5 className="game-name">Game Name (ID#)</h5>
+                     <p className="team-greet">Welcome Team 1</p>
+                     <p className="time"><b>Time Remaining:</b> 00:00:00</p>
+                 </div>
+                 <hr />
+                 <div className="page-header">
+                    <h5>Activity Stream</h5>
                  </div>
                     <StreamChat
                         captureUser={this.captureTeam}

@@ -25,12 +25,11 @@ class StreamChat extends Component{
                 <div id="streamWindow" ref={this.myRef}> 
                 {Object.keys(this.props.details).map(key => 
                     <p key={key} className="chat-messages">
-                    {this.props.details[key].teamName + ": " + this.props.details[key].text} 
+                    <b>{this.props.details[key].teamName + ": "}</b>{this.props.details[key].text} 
                     </p>
 
                 )}
                 </div>
-                <hr />
                 <form>
                     <input id="username" placeholder="Name" onBlur={this.props.captureUser}></input>
                     <input id="message" placeholder="Message" onBlur={this.props.captureMsg}></input>
