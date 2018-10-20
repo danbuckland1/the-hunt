@@ -5,11 +5,3 @@
     flex-direction:column;
     height:100%;
 }
-
-/* .chat-messages{
-    flex: 1;
-    height:100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
-  } */

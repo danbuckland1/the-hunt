@@ -1,0 +1,38 @@
+.Create, .Join, .Login {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-header {
+    font-weight: bold;
+    text-align: center;
+}
+
+label {
+    font-size: 15px;
+    margin: 0px;
+}
+
+.form-control {
+    height: 25px;
+}
+
+#play-btn {
+    display: block;
+    margin: 1rem auto .5rem auto; 
+    border-radius: 30px;
+    background-color:#5BA276;
+    border-color: #5BA276;
+}
+
+.login-links{
+    text-align: center;
+    margin: .5rem;
+    font-size: 15px;
+}
+
+
+a, a:hover {
+    color: #EC674D;
+}
