@@ -9,6 +9,8 @@ import Jumbotron from "./components/Jumbotron";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import LoginGame from "./components/LoginGame";
+//Google Button
+import GoogleButton from "./components/GoogleButton";
 //CSS file
 import './App.css';
 
@@ -52,6 +54,7 @@ class App extends Component {
           <Route exact path="/" render = {() => <CreateGame action={this.handleLogin}/> }/>
           <Route exact path="/join" render = {() => <JoinGame action={this.handleLogin}/> }/>
           <Route exact path="/login" render = {() => <LoginGame action={this.handleLogin}/> }/>
+          <Route exact path="/auth/google" render = {() => <GoogleButton action={this.handleauth}/> }/>
           </div>
         </Router>
         </Wrapper>
