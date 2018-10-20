@@ -8,6 +8,7 @@ import Jumbotron from "../components/Jumbotron";
 import CreateGame from "../components/CreateGame";
 import JoinGame from "../components/JoinGame";
 import LoginGame from "../components/LoginGame";
+import GoogleButton from '../components/GoogleButton';
 
 
 class Home extends Component {
@@ -20,6 +21,7 @@ class Home extends Component {
           <Route exact path="/" component={CreateGame} />
           <Route exact path="/join" component={JoinGame} />
           <Route exact path="/login" component={LoginGame}/>
+          <Route exact path="/auth/google" component={GoogleButton} />
           </div>
         </Router>
       </Wrapper>
