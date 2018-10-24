@@ -1,19 +1,18 @@
 //Dependencies
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Components
 import Wrapper from "./components/Wrapper";
-import Activity from "./pages/Activity";
-import Jumbotron from "./components/Jumbotron";
 //Create/Join/Login form components
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import LoginGame from "./components/LoginGame";
+//Pages
+import Activity from "./pages/Activity";
 //Google Button
 import GoogleButton from "./components/GoogleButton";
 //CSS file
 import './App.css';
-
 
 
 
@@ -28,39 +27,38 @@ class App extends Component {
    handleLogin = () => {
     this.setState({
       isLoggedIn: true
-    });
+    })
   }
 
-
   render() {
-    //Conditional rendering
-    //If state is logged in then render the Activity Stream page
-    if(this.state.isLoggedIn){
       return (
         <Wrapper>
-          <Activity />
-        </Wrapper>
-      );
-
-    }
-    //If state is NOT logged in then render homepage (with the logins)
-    else {
-      return (
-        <Wrapper>
-        <Jumbotron />
         <Router>
-          <div className="dynamicForm">
-          {/* Passes along handleLogin function as a prop to CreateGame component */}
-          <Route exact path="/" render = {() => <CreateGame action={this.handleLogin}/> }/>
-          <Route exact path="/join" render = {() => <JoinGame action={this.handleLogin}/> }/>
-          <Route exact path="/login" render = {() => <LoginGame action={this.handleLogin}/> }/>
-          <Route exact path="/auth/google" render = {() => <GoogleButton action={this.handleauth}/> }/>
-          </div>
+          <Fragment>
+            <Switch>
+              {/* Passes along handleLogin function as a prop to CreateGame component */}
+              {/* Conditional Route that will route to Activity page if logged in or CreateGame page if not logged in */}
+              <Route exact path="/" render = {(props) => 
+                this.state.isLoggedIn?
+                <Activity {...props} action={this.handleLogin}/> : <CreateGame {...props} action={this.handleLogin}/>
+                }/>
+              <Route exact path="/join" render = {(props) => 
+                this.state.isLoggedIn?
+                <Activity {...props} action={this.handleLogin}/> : <JoinGame {...props} action={this.handleLogin}/>
+                }/>
+                <Route exact path="/login" render = {(props) => 
+                this.state.isLoggedIn?
+                <Activity {...props} action={this.handleLogin}/> : <LoginGame {...props} action={this.handleLogin}/>
+                }/>
+              <Route exact path="/auth/google" render = {(props) => <GoogleButton {...props} action={this.handleauth}/> }/>
+            </Switch>
+          </Fragment>
         </Router>
         </Wrapper>
       );
-    }
   }
-}
+
+
+}//End App component
 
 export default App;

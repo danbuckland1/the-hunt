@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import fire from "../firebase.js";
-import Wrapper from "../components/Wrapper";
 import Navbar from "../components/Navbar";
 import StreamChat from "../components/StreamChat";
 
@@ -86,10 +85,11 @@ class Activity extends Component {
         console.log("submitted!");
     };
     
+  
     //Renders to page
     render(){
         return (
-            <Wrapper>
+            <Fragment>
                 <Navbar />
                  <div className="game-header">
                      <h5 className="game-name">Game Name (ID#)</h5>
@@ -107,7 +107,7 @@ class Activity extends Component {
                         details={this.state.chatHistory}
                         />
     
-            </Wrapper>
+            </Fragment>
         );
     };
 
