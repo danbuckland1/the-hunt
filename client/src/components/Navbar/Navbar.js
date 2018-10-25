@@ -1,5 +1,5 @@
-import React from "react";
-// import { Link, Route } from "react-router-dom";
+import React, { Component, Fragment } from "react";
+import { Link, Route, Switch } from "react-router-dom";
 //custom css
 import "./Navbar.css";
 // Navbar images
@@ -8,12 +8,17 @@ import LeaderboardIcon from "../../images/icons/leaderboard2.png";
 import ChallengesIcon from "../../images/icons/challenges.png";
 import LogoutIcon from "../../images/icons/logout.png";
 //Pages
-// import Challenges from "../../pages/Challenges";
+import Challenges from "../../pages/Challenges";
 
+class Navbar extends Component{
+    componentDidMount = (match) => {
+        console.log(this.props.match.url);
+    }
+    render(){
+        return(
+            <Fragment>
 
-const Navbar = ({ match }) => {
-    return (
-        <nav className="navbar navbar-expand">
+            <nav className="navbar navbar-expand">
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
@@ -23,7 +28,9 @@ const Navbar = ({ match }) => {
                         <img src ={LeaderboardIcon} alt="Leaderboard" className="navIcon"/>
                     </li>
                     <li className="nav-item">
-                        <img src={ChallengesIcon} alt="" className="navIcon"/>
+                        <Link to={ `${this.props.match.url}/challenges` } >
+                            <img src={ChallengesIcon} alt="Challenges" className="navIcon"/>
+                        </Link>
                     </li>
                     <li className="nav-item">
                     <img src={LogoutIcon} alt="Challenges" className="navIcon"/>
@@ -31,7 +38,18 @@ const Navbar = ({ match }) => {
                 </ul>
             </div>
         </nav>
-    )
-};
+        <Switch>
+        {/* ${this.props.match.url} */}
+        <Route exact path={ `/game/challenges` } 
+            render={(props) => {
+                    return <p>Test</p>
+            }}
+            />
+        </Switch>
+        </Fragment>
+        )
+    }
+
+}
 
 export default Navbar;

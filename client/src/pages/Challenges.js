@@ -6,7 +6,6 @@ class Challenges extends Component{
     render(){
         return (
             <Fragment>
-                <Navbar />
                 <p>THIS IS THE CHALLENGES PAGE!!</p>
             </Fragment>
         )

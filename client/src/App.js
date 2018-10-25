@@ -1,6 +1,6 @@
 //Dependencies
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 //Components
 import Wrapper from "./components/Wrapper";
 //Create/Join/Login form components
@@ -38,17 +38,21 @@ class App extends Component {
             <Switch>
               {/* Passes along handleLogin function as a prop to CreateGame component */}
               {/* Conditional Route that will route to Activity page if logged in or CreateGame page if not logged in */}
+              <Route path="/game" render = {(props) => 
+                this.state.isLoggedIn?
+                <Activity {...props} action={this.handleLogin}/> : <Redirect to ="/"/>
+                }/>
               <Route exact path="/" render = {(props) => 
                 this.state.isLoggedIn?
-                <Activity {...props} action={this.handleLogin}/> : <CreateGame {...props} action={this.handleLogin}/>
+                <Redirect to="/game" /> : <CreateGame {...props} action={this.handleLogin}/>
                 }/>
               <Route exact path="/join" render = {(props) => 
                 this.state.isLoggedIn?
-                <Activity {...props} action={this.handleLogin}/> : <JoinGame {...props} action={this.handleLogin}/>
+                  <Redirect to="/game" /> : <JoinGame {...props} action={this.handleLogin}/>
                 }/>
                 <Route exact path="/login" render = {(props) => 
                 this.state.isLoggedIn?
-                <Activity {...props} action={this.handleLogin}/> : <LoginGame {...props} action={this.handleLogin}/>
+                  <Redirect to="/game" /> : <LoginGame {...props} action={this.handleLogin}/>
                 }/>
               <Route exact path="/auth/google" render = {(props) => <GoogleButton {...props} action={this.handleauth}/> }/>
             </Switch>

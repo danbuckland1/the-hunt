@@ -87,10 +87,10 @@ class Activity extends Component {
     
   
     //Renders to page
-    render(){
+    render(props){
         return (
             <Fragment>
-                <Navbar />
+                <Navbar match={this.props.match} />
                  <div className="game-header">
                      <h5 className="game-name">Game Name (ID#)</h5>
                      <p className="team-greet">Welcome Team 1</p>
@@ -106,7 +106,6 @@ class Activity extends Component {
                         handleMsgSubmit={this.handleMsgSubmit}
                         details={this.state.chatHistory}
                         />
-    
             </Fragment>
         );
     };
