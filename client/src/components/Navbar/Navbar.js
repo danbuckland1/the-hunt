@@ -31,8 +31,8 @@ class Navbar extends Component{
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={ `${this.props.match.url}/challenges` } >
-                            <img src={ChallengesIcon} alt="Challenges" className="navIcon"/>
+                        <Link to={ `${this.props.match.url}/team` } >
+                            <img src={ChallengesIcon} alt="Team Dashboard" className="navIcon"/>
                         </Link>
                     </li>
                     <li className="nav-item">

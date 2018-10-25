@@ -3,11 +3,11 @@ import { Route, Switch } from "react-router-dom";
 //Components
 import Navbar from "../components/Navbar";
 import StreamChat from "../components/StreamChat";
-import Challenges from "../components/Challenges";
+import TeamDash from "../components/TeamDash";
 import Leaderboard from "../components/Leaderboard";
 
 
-class Activity extends Component {
+class Game extends Component {
     
     //Renders to page
     render(props){
@@ -27,8 +27,8 @@ class Activity extends Component {
                      <Route exact path={ `/game/board` } 
                         render={(props) => { return <Leaderboard {...props} />}}
                     />
-                    <Route exact path={ `/game/challenges` } 
-                        render={(props) => { return <Challenges {...props} />}}
+                    <Route exact path={ `/game/team` } 
+                        render={(props) => { return <TeamDash {...props} />}}
                     />
                 </Switch>
 
@@ -38,6 +38,6 @@ class Activity extends Component {
 
 
 
-}//End Activity Class
+}//End Game Class
 
-export default Activity;
+export default Game;
