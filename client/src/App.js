@@ -8,7 +8,7 @@ import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import LoginGame from "./components/LoginGame";
 //Pages
-import Activity from "./pages/Activity";
+import Game from "./pages/Game";
 //Google Button
 import GoogleButton from "./components/GoogleButton";
 //CSS file
@@ -37,10 +37,10 @@ class App extends Component {
           <Fragment>
             <Switch>
               {/* Passes along handleLogin function as a prop to CreateGame component */}
-              {/* Conditional Route that will route to Activity page if logged in or CreateGame page if not logged in */}
+              {/* Conditional Route that will route to Game page if logged in or CreateGame page if not logged in */}
               <Route path="/game" render = {(props) => 
                 this.state.isLoggedIn?
-                <Activity {...props} action={this.handleLogin}/> : <Redirect to ="/"/>
+                <Game {...props} action={this.handleLogin}/> : <Redirect to ="/"/>
                 }/>
               <Route exact path="/" render = {(props) => 
                 this.state.isLoggedIn?

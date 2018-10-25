@@ -41,7 +41,7 @@ class StreamChat extends Component{
                 chatHistory: newChatHistory
             })
             //Log what state looks like in console
-            console.log(this.state.chatHistory);
+            // console.log(this.state.chatHistory);
         });
     }
 
@@ -117,7 +117,6 @@ class StreamChat extends Component{
                     <div id="streamWindow" ref={this.myRef}> 
                     {Object.keys(this.state.chatHistory).map(key => 
                         <p key={key} className="chat-messages">
-                        {/* <b>{this.props.details[key].teamName + ": "}</b>{this.props.details[key].text}  */}
                         <b>{this.state.chatHistory[key].teamName + ": "}</b>{this.state.chatHistory[key].text} 
                         </p>
 

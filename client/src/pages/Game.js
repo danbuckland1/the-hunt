@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from "react";
+import { Route, Switch } from "react-router-dom";
+//Components
 import Navbar from "../components/Navbar";
 import StreamChat from "../components/StreamChat";
+import Challenges from "../components/Challenges";
+import Leaderboard from "../components/Leaderboard";
 
 
 class Activity extends Component {
@@ -16,8 +20,18 @@ class Activity extends Component {
                      <p className="time"><b>Time Remaining:</b> 00:00:00</p>
                  </div>
                  <hr />
-                 {/* Insert Routes for Activity, Challenge, and Leaderboard */}
-                    <StreamChat />
+                 <Switch>
+                    <Route exact path={ `/game` } 
+                        render={(props) => { return <StreamChat {...props} />}}
+                    />
+                     <Route exact path={ `/game/board` } 
+                        render={(props) => { return <Leaderboard {...props} />}}
+                    />
+                    <Route exact path={ `/game/challenges` } 
+                        render={(props) => { return <Challenges {...props} />}}
+                    />
+                </Switch>
+
             </Fragment>
         );
     };
