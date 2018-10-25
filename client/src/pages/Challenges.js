@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from "react";
-import Navbar from "../components/Navbar";
 
 class Challenges extends Component{
 

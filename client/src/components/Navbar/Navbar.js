@@ -8,7 +8,7 @@ import LeaderboardIcon from "../../images/icons/leaderboard2.png";
 import ChallengesIcon from "../../images/icons/challenges.png";
 import LogoutIcon from "../../images/icons/logout.png";
 //Pages
-import Challenges from "../../pages/Challenges";
+// import Challenges from "../../pages/Challenges";
 
 class Navbar extends Component{
     componentDidMount = (match) => {
@@ -39,7 +39,6 @@ class Navbar extends Component{
             </div>
         </nav>
         <Switch>
-        {/* ${this.props.match.url} */}
         <Route exact path={ `/game/challenges` } 
             render={(props) => {
                     return <p>Test</p>
