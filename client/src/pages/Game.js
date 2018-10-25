@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import StreamChat from "../components/StreamChat";
 import TeamDash from "../components/TeamDash";
 import Leaderboard from "../components/Leaderboard";
+import GameHeader from "../components/GameHeader";
 
 
 class Game extends Component {
@@ -14,11 +15,7 @@ class Game extends Component {
         return (
             <Fragment>
                 <Navbar match={this.props.match} />
-                 <div className="game-header">
-                     <h5 className="game-name">Game Name (ID#)</h5>
-                     <p className="team-greet">Welcome Team 1</p>
-                     <p className="time"><b>Time Remaining:</b> 00:00:00</p>
-                 </div>
+                <GameHeader />
                  <hr />
                  <Switch>
                     <Route exact path={ `/game` } 

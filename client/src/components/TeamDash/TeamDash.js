@@ -2,10 +2,6 @@ import React, {Component, Fragment} from "react";
 
 class TeamDash extends Component{
 
-    componentDidMount() {
-        console.log(this.props);
-    }
-
     render(){
         return (
             <Fragment>
