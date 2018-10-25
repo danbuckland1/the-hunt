@@ -6,6 +6,7 @@ import StreamChat from "../components/StreamChat";
 import TeamDash from "../components/TeamDash";
 import Leaderboard from "../components/Leaderboard";
 import GameHeader from "../components/GameHeader";
+import Challenge from "../components/Challenge";
 
 
 class Game extends Component {
@@ -27,6 +28,10 @@ class Game extends Component {
                     <Route exact path={ `/game/team` } 
                         render={(props) => { return <TeamDash {...props} />}}
                     />
+                    <Route exact path={ `/game/team/:id` } 
+                        render={(props) => { return <Challenge {...props} />}}
+                    />
+
                 </Switch>
 
             </Fragment>
