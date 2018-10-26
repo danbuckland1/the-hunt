@@ -1,27 +1,50 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+//custom css
 import "./Navbar.css";
+// Navbar images
+import ActivityIcon from "../../images/icons/activitychat.png";
+import LeaderboardIcon from "../../images/icons/leaderboard2.png";
+import ChallengesIcon from "../../images/icons/challenges.png";
+import LogoutIcon from "../../images/icons/logout.png";
 
-const Navbar = props => (
 
-    <nav className="navbar navbar-expand navbar-light bg-light">
-        <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-                <li className="nav-item">
-                    <p>Activity Stream</p>
-                </li>
-                <li className="nav-item">
-                    <p>Leaderboard</p>
-                </li>
-                <li className="nav-item">
-                    <p>Challenges</p>
-                </li>
-                <li className="nav-item">
-                    <p>X</p>
-                </li>
-            </ul>
-        </div>
-    </nav>
+class Navbar extends Component{
+    componentDidMount = (match) => {
+        console.log(this.props.match.url);
+    }
+    render(){
+        return(
+            <Fragment>
 
-);
+            <nav className="navbar navbar-expand">
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link to={ `${this.props.match.url}` } >
+                            <img src={ActivityIcon} alt="Activity Stream" className="navIcon"/> 
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={ `${this.props.match.url}/board` } >
+                            <img src ={LeaderboardIcon} alt="Leaderboard" className="navIcon"/>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={ `${this.props.match.url}/team` } >
+                            <img src={ChallengesIcon} alt="Team Dashboard" className="navIcon"/>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                            <img src={LogoutIcon} alt="Challenges" className="navIcon"/>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </Fragment>
+        )
+    }
+
+}
 
 export default Navbar;
