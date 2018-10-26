@@ -1,3 +1,7 @@
+.navbar{
+    background-color: #5BA276;
+    box-shadow: 1px 1px 10px slategray;
+}
 .navbar, ul{
     width: 100%;
 }
@@ -5,5 +9,10 @@
 .nav-item {
     float: left;
     width: 25%;
-    text-align: right;
+    text-align: center;
+}
+
+.navIcon {
+    width: 40px;
+    height: 40px;
 }

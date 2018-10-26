@@ -1,27 +1,22 @@
 #title {
     text-align: center;
     font-family: 'Stardos Stencil', cursive;
+    text-shadow: 1px 1px 5px slategray;
+    color: #39453D;
 }
 
 #lead {
     text-align: center;
     font-family: 'PT Mono', monospace;
     font-size: 15px;
+    text-shadow: 1px 1px 5px slategray;
+    color: #39453D;
 }
 
-/* h1, h3 {
-    font-family: 'Alfa Slab One', cursive;
-    color: white;
-    text-shadow: 3px 3px 2px slategrey;
-} */
-
-/* .lead {
-    color: white;
-    font-weight: bold;
-    text-shadow: 3px 3px 2px slategrey;
-} */
 
 .jumbotron {
-    /* background-image: url("../../images/thehunt-jumbotron.jpg"); */
-    /* box-shadow: 1px 1px 3px slategrey */
+    background-image: url("../../images/thehunt-jumbotron.jpg");
+    background-size: cover;
+    height: 300px;
+    box-shadow: 1px 1px 10px slategrey;
 }
