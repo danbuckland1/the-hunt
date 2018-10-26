@@ -18,7 +18,7 @@
     font-weight: bold;
 }
 
-.challenge-desc{
+.challenge-desc, .status {
     padding: 0px;
     margin: 0px;
 }
