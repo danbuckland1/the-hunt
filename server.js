@@ -61,7 +61,7 @@ console.log(keys);
 passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret,
-    callbackURL: "http://localhost:3001/auth/google/callback"
+    callbackURL: process.env.GOOGLE_CALLBACK
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -79,7 +79,6 @@ require("./routes/api-routes.js")(app, passport, googleOauth);
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
 // }
-
 
 
 // Send every other request to the React app

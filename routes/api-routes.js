@@ -47,7 +47,7 @@
 // );
 
 // module.exports = router;
-module.exports = function(app, passport, googleOauth) {
+module.exports = function(app, passport, googleOauth, mongoose) {
   passport.serializeUser(function(user, cb) {
     cb(null, user);
   });
@@ -59,10 +59,10 @@ module.exports = function(app, passport, googleOauth) {
     passport.authenticate('google', { scope: ['profile'] }));
 
   app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', { failureRedirect: 'http://localhost:3000/game' }),
     function(req, res) {
       // Successful authentication, redirect home.
-      res.redirect('/');
+      res.redirect('http://localhost:3000/game');
   });
   app.get('/something', (req, res) => {
     res.json({something: 'something'});
