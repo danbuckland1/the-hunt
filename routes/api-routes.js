@@ -67,4 +67,15 @@ module.exports = function(app, passport, googleOauth) {
   app.get('/something', (req, res) => {
     res.json({something: 'something'});
   });
+
+
+//===================Begin API Routes for Creating Records===================
+
+app.get("/newgame", (req,res) => {
+  console.log("This Works");
+
+});
+
+
+//====================End API Routes for Creating Records=====================
 };
