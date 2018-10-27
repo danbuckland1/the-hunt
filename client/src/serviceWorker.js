@@ -67,7 +67,7 @@ function registerValidSW(swUrl, config) {
               // available; please refresh." message in your web app.
               console.log('New content is available; please refresh.');
 
-              // Execute callback
+              // Execute 
               if (config.onUpdate) {
                 config.onUpdate(registration);
               }
@@ -77,7 +77,7 @@ function registerValidSW(swUrl, config) {
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
 
-              // Execute callback
+              // Execute 
               if (config.onSuccess) {
                 config.onSuccess(registration);
               }
