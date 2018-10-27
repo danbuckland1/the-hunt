@@ -48,28 +48,28 @@
 
 // module.exports = router;
 module.exports = function(app, passport, googleOauth, mongoose, User){
-  passport.serializeUser( (user, done) => {
-    done(null, user.profileId);
-  });
+  // passport.serializeUser( (user, done) => {
+  //   done(null, user.profileId);
+  // });
   
-  passport.deserializeUser( (profileId, done) => {
-    User.findOne({
-      profileId: profileId
-    })
-    .then( user => {
-      console.log(user);
-      done(null, user);
-    })
-    .catch( err => {
-      done(error, false);
-    })
+  // passport.deserializeUser( (profileId, done) => {
+  //   User.findOne({
+  //     profileId: profileId
+  //   })
+  //   .then( user => {
+  //     console.log(user);
+  //     done(null, user);
+  //   })
+  //   .catch( err => {
+  //     done(error, false);
+  //   })
 
-  });
+  // });
 
   app.get('/api/email', (req,res) => {
     console.log(req.user);
     if(req.isAuthenticated()){
-      res.join({
+      res.json({
         user: req.user
       });
     }

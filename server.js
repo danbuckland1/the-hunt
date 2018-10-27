@@ -72,13 +72,13 @@ passport.use(
       var profileId = data.id;
 
       User.findOne({
-        profileId: profileId
+        googleId: profileId
       })
         .then(user => {
           if (!user) {
             User.create({
-              profileId: profileId,
-              email: email
+              googleId: profileId
+              // email: email
             }).then(user => {
               return cb(null, user);
             });
@@ -93,6 +93,25 @@ passport.use(
         })
     }
   ));
+
+//Saving profile to session
+  passport.serializeUser( (user, done) => {
+    done(null, user.googleId);
+});
+//Retreiving user information using the session
+passport.deserializeUser( (googleId, done) => {
+  User.findOne({
+    googleId: googleId
+    })
+    .then( user => {
+        console.log(user);
+        done(null, user);
+    })
+    .catch( err => {
+        done(error, false);
+    })
+});
+
 
 require("./routes/api-routes.js")(app, passport, googleOauth);
 
