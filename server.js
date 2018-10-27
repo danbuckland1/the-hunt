@@ -10,18 +10,16 @@ const react = require("react");
 const reactDom = require("react-dom");
 const reactRouterDom = require("react-router-dom");
 // const reactScripts = require("react-scripts");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
-const keys = require('./config/keys');
-const passportSetup = require('./config/passport-setup');
+const keys = require("./config/keys");
+const passportSetup = require("./config/passport-setup");
 // const cookieSession = require('cookie-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser");
+const path = require("path");
+const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
-const googleOauth = require('passport-google-oauth20');
-
-
+const googleOauth = require("passport-google-oauth20");
 
 //Making session use
 // app.use(cookieSession({
@@ -34,41 +32,86 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressSession({ 
-  secret: 'keyboard cat',
-  resave: true, 
-  saveUninitialized: true,
-  secure: false 
-}));
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+    secure: false
+  })
+);
 
 //Connecting to mongodb
-mongoose.connect(keys.mongodb.dbURI, () =>{
-  console.log('connected to mongodb');
-});
+mongoose.connect(
+  keys.mongodb.dbURI,
+  () => {
+    console.log("connected to mongodb");
+  }
+);
 
 //Construct Models
-let User = require('./models/user-model')(mongoose);
+let User = require("./models/user-model")(mongoose);
 
 //Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 
-
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 console.log(keys);
-passport.use(new GoogleStrategy({
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret,
-    callbackURL: "http://localhost:3001/auth/google/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: keys.google.clientID,
+      clientSecret: keys.google.clientSecret,
+      callbackURL: process.env.GOOGLE_CALLBACK
+    },
+    function(accessToken, refreshToken, data, cb) {
+      var email = data.emails[0].value;
+      var profileId = data.id;
+
+      User.findOne({
+        googleId: profileId
+      })
+        .then(user => {
+          if (!user) {
+            User.create({
+              googleId: profileId
+              // email: email
+            }).then(user => {
+              return cb(null, user);
+            });
+          }
+          else{
+            return cb(null, user);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          return cb(err, null);
+        })
+    }
+  ));
+
+//Saving profile to session
+  passport.serializeUser( (user, done) => {
+    done(null, user.googleId);
+});
+//Retreiving user information using the session
+passport.deserializeUser( (googleId, done) => {
+  User.findOne({
+    googleId: googleId
+    })
+    .then( user => {
+        console.log(user);
+        done(null, user);
+    })
+    .catch( err => {
+        done(error, false);
+    })
+});
+
 
 require("./routes/api-routes.js")(app, passport, googleOauth);
 
@@ -76,11 +119,9 @@ require("./routes/api-routes.js")(app, passport, googleOauth);
 // app.use('/profile', profileRoutes);
 
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
-
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -103,8 +144,6 @@ app.listen(PORT, () => {
 //   console.log("huzzuh!");
 //   res.render("/");
 // });
-
-
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
