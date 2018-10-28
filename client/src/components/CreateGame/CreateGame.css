@@ -24,6 +24,7 @@ label {
     border-radius: 30px;
     background-color:#5BA276;
     border-color: #5BA276;
+    text-decoration: none;
 }
 
 .login-links{

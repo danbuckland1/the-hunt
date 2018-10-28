@@ -8,8 +8,8 @@ const GoogleButton = () => (
             <p id="lead">A Scavenger Hunt tool for friends and family!</p>
         </div>
         <div className = "btnDiv">
-        <button type= "button" className= "btn btn-success" id="google-btn">
-        Login with Google
+        <button type= "button" className= "btn btn-success" id="google-btn"><a href="http://localhost:3001/auth/google
+        ">Login with Google</a>
         </button>
         </div>
     </div>
