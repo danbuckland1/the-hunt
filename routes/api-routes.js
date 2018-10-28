@@ -71,8 +71,8 @@ module.exports = function(app, passport, googleOauth) {
 
 //===================Begin API Routes for Creating Records===================
 
-app.get("/newgame", (req,res) => {
-  console.log("This Works");
+app.get("/api/newgame", (req,res) => {
+  console.log("Running on the server");
 
 });
 

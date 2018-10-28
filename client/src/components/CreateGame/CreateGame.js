@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Jumbotron from "../Jumbotron/Jumbotron";
 import "./CreateGame.css";
 
@@ -15,7 +15,7 @@ const CreateGame = props => (
             
             <p className="login-links">
                 {/* Or <Link to="/game"> Join a Game </Link> */}
-                Or <Link to="/newgame">Join a Game</Link>
+                Or <Link to="/api/user">Join a Game</Link>
                 
             </p>
         </div>

@@ -18,6 +18,7 @@ import Game from "./pages/Game";
 import GoogleButton from "./components/GoogleButton";
 //CSS file
 import "./App.css";
+import API from "./utils/API";
 
 class App extends Component {
   //sets state of app to not logged in by default
@@ -31,6 +32,7 @@ class App extends Component {
     this.setState({
       isLoggedIn: true
     });
+    API.createGame();
   };
 
   render() {
