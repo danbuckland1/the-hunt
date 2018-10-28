@@ -91,5 +91,15 @@ module.exports = function(app, passport, googleOauth, mongoose, User){
       // Successful authentication, redirect home.
       res.redirect('http://localhost:3000/game');
   });
-
 }
+
+//===================Begin API Routes for Creating Records===================
+
+app.get("/api/newgame", (req,res) => {
+  console.log("Running on the server");
+
+});
+
+
+//====================End API Routes for Creating Records=====================
+};

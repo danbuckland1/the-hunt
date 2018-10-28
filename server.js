@@ -50,7 +50,8 @@ mongoose.connect(
 );
 
 //Construct Models
-let User = require("./models/user-model")(mongoose);
+let User = require('./models/user-model')(mongoose);
+let db = require("./models");
 
 //Initialize passport
 app.use(passport.initialize());
@@ -113,7 +114,7 @@ passport.deserializeUser( (googleId, done) => {
 });
 
 
-require("./routes/api-routes.js")(app, passport, googleOauth);
+require("./routes/api-routes.js")(app, passport, googleOauth, db);
 
 // app.use('/auth', authRoutes);
 // app.use('/profile', profileRoutes);

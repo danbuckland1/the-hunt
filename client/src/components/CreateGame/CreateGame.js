@@ -15,7 +15,9 @@ const CreateGame = props => (
                 <Link to='/auth/google'> <button type="button" className="btn btn-success" id="play-btn">Let's Play </button></Link>
             
             <p className="login-links">
-                Or <Link to="/join"> Join a Game </Link>
+                {/* Or <Link to="/game"> Join a Game </Link> */}
+                Or <Link to="/api/user">Join a Game</Link>
+                
             </p>
         </div>
     </Fragment>
