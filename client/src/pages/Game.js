@@ -18,16 +18,16 @@ class Game extends Component {
                 <GameHeader {...props} match={this.props.match}/>
                  <hr />
                  <Switch>
-                    <Route exact path="/game/:gameid" 
+                    <Route exact path="/game/:gameid/:teamname" 
                         render={(props) => { return <StreamChat {...props} />}}
                     />
-                     <Route exact path="/game/:gameid/board" 
+                     <Route exact path="/game/:gameid/:teamname/board" 
                         render={(props) => { return <Leaderboard {...props} />}}
                     />
-                    <Route exact path="/game/:gameid/team"
+                    <Route exact path="/game/:gameid/:teamname/team"
                         render={(props) => { return <TeamDash {...props} />}}
                     />
-                    <Route exact path={ "/game/:gameid/team/:id"} 
+                    <Route exact path={ "/game/:gameid/:teamname/team/:id"} 
                         render={(props) => { return <Challenge {...props} />}}
                     />
 

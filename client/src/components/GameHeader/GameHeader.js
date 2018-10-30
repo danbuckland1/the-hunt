@@ -3,7 +3,8 @@ import API from "../../utils/API";
 
 class GameHeader extends Component {
     state = {
-        gameName: ""
+        gameName: "",
+        teamName: ""
     }
 
     componentDidMount = (match) => {
@@ -20,7 +21,7 @@ class GameHeader extends Component {
         return(
             <div className="game-header">
                 <h5 className="game-name">{this.state.gameName} (ID#)</h5>
-                <p className="team-greet">Welcome Team 1</p>
+                <p className="team-greet">Welcome {this.props.match.params.teamname}</p>
                 <p className="time"><b>Time Remaining:</b> 00:00:00</p>
             </div>
         )

@@ -170,7 +170,7 @@ class App extends Component {
               {/* Passes along handleLogin function as a prop to CreateGame component */}
               {/* Conditional Route that will route to Game page if logged in or CreateGame page if not logged in */}
               <Route
-                path="/game/:gameid"
+                path="/game/:gameid/:teamname"
                 render={props =>
                   this.state.isLoggedIn ? (
                     <Game {...props} handleLogin={this.handleLogin} />
@@ -184,7 +184,7 @@ class App extends Component {
                 path="/"
                 render={props =>
                   this.state.isLoggedIn ? (
-                    <Redirect to={`/game/${this.state.gameID}`} />
+                    <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
                   ) : (
                     <CreateGame 
                       {...props}
@@ -199,7 +199,7 @@ class App extends Component {
                 path="/join"
                 render={props =>
                   this.state.isLoggedIn ? (
-                    <Redirect to={`/game/${this.state.gameID}`} />
+                    <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
                   ) : (
                     <JoinGame 
                     {...props} 
@@ -216,7 +216,7 @@ class App extends Component {
                 path="/auth/google"
                 render={props =>
                   this.state.isLoggedIn ? (
-                    <Redirect to={`/game/${this.state.gameID}`} />
+                    <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
                   ) : (
                     <GoogleButton 
                       {...props} 
