@@ -5,8 +5,6 @@
     "node": "8.11.1",
     "yarn": "1.10.1"
   },
-
-
   "description": "the hunt - it's so amazing -_0",
   "main": "server.js",
   "private": true,
@@ -14,6 +12,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "firebase": "^5.5.6",
