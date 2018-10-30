@@ -1,8 +1,7 @@
 import React, { Fragment,Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Jumbotron from "../Jumbotron/Jumbotron";
 import "../CreateGame/CreateGame.css";
-import API from "../../utils/API";
 
 class JoinGame extends Component {
 

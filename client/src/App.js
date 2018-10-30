@@ -137,9 +137,11 @@ class App extends Component {
     //Check to see if Team Name with matching game ID exists
     API.pullTeam(this.state.gameID, this.state.teamName)
     .then (res => {
-      console.log(res);
+      console.log(res.data);
+      // console.log("Game ID: " + res.data.gameID);
+      // console.log("TeamID: " + res.data.teamName);
       //If it does...
-      if(res){
+      if(res.data){
         //Generate a new team name
         let newTeamName = this.handleTeamNameGeneration(res.data.gameID, res.data.teamName);
         //Set teamName state to new team name

@@ -16,8 +16,7 @@ import axios from "axios";
         
     },
     pullTeam: (gameID, teamName) =>{
-        return axios.get("api/pullTeam/" + decodeURIComponent(gameID) + "/" + decodeURIComponent(teamName));
-        // .then( result => console.log(result))
+        return axios.get("/api/pullTeam/" + decodeURIComponent(gameID) + "/" + decodeURIComponent(teamName));
     }
     
  };//END export default

@@ -140,18 +140,15 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
       })
   })
 
-  app.get("/api/pullTeam/:gameid/:teamname/", (req,res) => {
-    // console.log("GameID: " + req.params.gameid);
-    // console.log("Team Name: " + req.params.teamname);
-    // db.Team.find({gameID: req.params.gameid, teamName: req.params.teamname}) 
-    db.Team.findOne({_id: "5bd8cde11f031f69b0115e8f"}) 
+  app.get("/api/pullTeam/:gameid/:teamname", (req,res) => {
+    db.Team.findOne({gameID: req.params.gameid, teamName: req.params.teamname}) 
       .then (results => {
         res.json(results);
       })
       .catch (error => {
         console.log(error);
-      })
-  });
+      }) 
+  })
   	 
  //====================End API Routes for Creating Records=====================
 
