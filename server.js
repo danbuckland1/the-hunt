@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require("axios");
 const express = require("express");
 const firebase = require("firebase");
@@ -40,6 +41,7 @@ app.use(
     secure: false
   })
 );
+
 
 //Connecting to mongodb
 mongoose.connect(
