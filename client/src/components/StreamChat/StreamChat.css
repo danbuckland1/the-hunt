@@ -22,17 +22,17 @@ form {
     margin: 10px 0 0 0;
 }
 
-#username{
+/* #username{
     width: 29%;
     border-style: solid;
     border-width: 1px;
     border-color: #707070;
     border-radius: 5px;
     margin: 0 2px 0 0;
-}
+} */
 
 #message{
-    width: 70%;
+    width: 100%;
     border-style: solid;
     border-width: 1px;
     border-color: #707070;
