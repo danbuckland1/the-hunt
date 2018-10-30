@@ -11,7 +11,7 @@ import LogoutIcon from "../../images/icons/logout.png";
 
 class Navbar extends Component{
     componentDidMount = (match) => {
-        console.log(this.props.match.url);
+        // console.log(this.props.match.url);
     }
     render(){
         return(

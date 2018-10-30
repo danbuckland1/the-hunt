@@ -1,13 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let GameModel = new Schema ({
-    gameID: {
-        type: Number,
-        unique: true,
-        trim: true,
-        required: true
-    },
+let GameModel = new Schema({
     gameName: {
         type: String,
         trim: true,
@@ -16,7 +10,7 @@ let GameModel = new Schema ({
     teams: {
         type: Array
     }
-})
+});
 
 
 const Game = mongoose.model("Game", GameModel);
