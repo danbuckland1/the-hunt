@@ -1,6 +1,9 @@
 {
   "name": "the-hunt",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.11.1"
+  },
   "description": "the hunt - it's so amazing -_0",
   "main": "server.js",
   "private": true,
