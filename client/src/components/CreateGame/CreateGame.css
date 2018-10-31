@@ -18,13 +18,18 @@ label {
     height: 25px;
 }
 
-#play-btn {
+#play-btn, #google-btn {
     display: block;
     margin: 1rem auto .5rem auto; 
     border-radius: 30px;
     background-color:#5BA276;
     border-color: #5BA276;
     text-decoration: none;
+    color: white;
+}
+
+.btn  {
+    color: white;
 }
 
 .login-links{
@@ -34,6 +39,6 @@ label {
 }
 
 
-a, a:hover {
+a {
     color: #EC674D;
 }

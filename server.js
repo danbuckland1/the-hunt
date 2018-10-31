@@ -11,7 +11,7 @@ const react = require("react");
 const reactDom = require("react-dom");
 const reactRouterDom = require("react-router-dom");
 // const reactScripts = require("react-scripts");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 const app = express();
 const keys = require("./config/keys");
 const passportSetup = require("./config/passport-setup");
@@ -45,14 +45,15 @@ app.use(
 
 //Connecting to mongodb
 mongoose.connect(
-  keys.mongodb.dbURI,
+  keys.mongodb.dbURI,{ useNewUrlParser: true },
   () => {
     console.log("connected to mongodb");
   }
 );
 
 //Construct Models
-let User = require("./models/user-model")(mongoose);
+const User = require("./models/user-model");
+const db = require("./models");
 
 //Initialize passport
 app.use(passport.initialize());
@@ -61,7 +62,7 @@ app.use(express.json());
 
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-console.log(keys);
+// console.log(keys);
 passport.use(
   new GoogleStrategy(
     {
@@ -79,8 +80,8 @@ passport.use(
         .then(user => {
           if (!user) {
             User.create({
-              googleId: profileId
-              // email: email
+              googleId: profileId,
+              email: email
             }).then(user => {
               return cb(null, user);
             });
@@ -115,7 +116,7 @@ passport.deserializeUser( (googleId, done) => {
 });
 
 
-require("./routes/api-routes.js")(app, passport, googleOauth);
+require("./routes/api-routes.js")(app, passport, googleOauth, mongoose, db);
 
 // app.use('/auth', authRoutes);
 // app.use('/profile', profileRoutes);

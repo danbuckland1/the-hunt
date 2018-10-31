@@ -10,25 +10,24 @@ import Challenge from "../components/Challenge";
 
 
 class Game extends Component {
-    
     //Renders to page
     render(props){
         return (
             <Fragment>
-                <Navbar match={this.props.match} />
-                <GameHeader />
+                <Navbar {...props} match={this.props.match} />
+                <GameHeader {...props} match={this.props.match}/>
                  <hr />
                  <Switch>
-                    <Route exact path={ `/game` } 
+                    <Route exact path="/game/:gameid/:teamname" 
                         render={(props) => { return <StreamChat {...props} />}}
                     />
-                     <Route exact path={ `/game/board` } 
+                     <Route exact path="/game/:gameid/:teamname/board" 
                         render={(props) => { return <Leaderboard {...props} />}}
                     />
-                    <Route exact path={ `/game/team` } 
+                    <Route exact path="/game/:gameid/:teamname/team"
                         render={(props) => { return <TeamDash {...props} />}}
                     />
-                    <Route exact path={ `/game/team/:id` } 
+                    <Route exact path={ "/game/:gameid/:teamname/team/:id"} 
                         render={(props) => { return <Challenge {...props} />}}
                     />
 
