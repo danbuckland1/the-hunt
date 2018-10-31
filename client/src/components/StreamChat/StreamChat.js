@@ -11,7 +11,7 @@ class StreamChat extends Component{
     //BEGIN - ACTIVITY/CHAT WINDOW FUNCTIONALITY
     //Sets State
     state = {
-        team: "",
+        team: this.props.match.params.teamname,
         txt: "",
         chatHistory: {}
     }
@@ -46,14 +46,14 @@ class StreamChat extends Component{
     }
 
     //Captures Username from input field
-    captureTeam = (event) => 
-    {
-        let team = event.target.value;
-        //adds username to the state
-        this.setState({
-            team: team
-        });
-    };
+    // captureTeam = (event) => 
+    // {
+    //     let team = event.target.value;
+    //     //adds username to the state
+    //     this.setState({
+    //         team: team
+    //     });
+    // };
 
     //Captures Message from input field
     captureMsg = (event) => 
@@ -67,7 +67,7 @@ class StreamChat extends Component{
 
     //Takes captured team/message and sends it to firebase
     handleMsgSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault();     
         //Create chat object that will take the username/text from the state
         let message = {
             teamName: this.state.team,
@@ -77,11 +77,15 @@ class StreamChat extends Component{
         database.push(message);
         //clears the state for future messages
         this.setState({
-            team: "",
             txt: ""
         });
-        console.log("submitted!");
+        console.log("Chat Message Submitted!");
     };
+
+    handleEmpty = () => {
+        return ""
+    }
+
 
     //END - ACTIVITY/CHAT WINDOW FUNCTIONALITY
     //==========================================================================
@@ -123,10 +127,10 @@ class StreamChat extends Component{
                     )}
                     </div>
                     <form>
-                        <input id="username" placeholder="Name" onBlur={this.captureTeam}></input>
+                        {/* <input id="username" placeholder="Name" onBlur={this.captureTeam}></input> */}
                         <input id="message" placeholder="Message" onBlur={this.captureMsg}></input>
                         <button onClick={this.handleMsgSubmit} type="button" className="btn btn-success" id="chat-btn">Send</button>
-                        </form>
+                    </form>
                 </div>
             </Fragment>
     

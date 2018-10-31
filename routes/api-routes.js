@@ -45,9 +45,10 @@
 //     res.redirect("/profile");
 //   }
 // );
+let db = require("../models/index");
 
 // module.exports = router;
-module.exports = function(app, passport, googleOauth, mongoose, User){
+module.exports = function(app, passport, googleOauth, mongoose, db){
   // passport.serializeUser( (user, done) => {
   //   done(null, user.profileId);
   // });
@@ -93,4 +94,63 @@ module.exports = function(app, passport, googleOauth, mongoose, User){
   });
   
 
-}
+
+//===================Begin API Routes for Creating Records===================
+//Creates New Game to game collection
+  app.post("/api/newgame", (req,res) => {
+    db.Game.create(req.body)
+    .then (results => {
+      res.json(results);
+    })
+    .catch (error => {
+      console.log(error);
+    })
+  });
+
+  app.get("/api/pullGame/:gameid", (req,res) => {
+    // console.log(req.body);
+    db.Game.findOne({_id: req.params.gameid})
+    .then (results => {
+      res.json(results);
+    })
+    .catch (error => {
+      console.log(error);
+    })
+  });
+
+  app.post("/api/newTeam", (req,res) => {
+    db.Team.create(req.body)
+    .then (results => {
+      res.json(results);
+    })
+    .catch (error => {
+      console.log(error);
+    })
+  })
+
+  app.post("/api/insertTeam", (req,res) => {
+    db.Game.findByIdAndUpdate(
+      req.body.gameID, 
+      {$push: {teams: req.body.teamID}},
+      {new: true})
+      .then(results => {
+        res.json(results);
+      })
+      .catch (error => {
+        console.log(error);
+      })
+  })
+
+  app.get("/api/pullTeam/:gameid/:teamname", (req,res) => {
+    db.Team.findOne({gameID: req.params.gameid, teamName: req.params.teamname}) 
+      .then (results => {
+        res.json(results);
+      })
+      .catch (error => {
+        console.log(error);
+      }) 
+  })
+  	 
+ //====================End API Routes for Creating Records=====================
+
+}//END module.exports

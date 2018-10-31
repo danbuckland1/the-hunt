@@ -2,12 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let ChallengeModel = new Schema ({
-    challengeID: {
-        type: Number,
-        unique: true,
-        trim: true,
-        required: true
-    },
     challengeTitle: {
         type: String,
         trim: true,
