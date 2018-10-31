@@ -11,22 +11,6 @@ class GoogleButton extends Component {
     }
 
 //Function that handles database communication when a team is created
-handleCreateTeam = () => {
-    //API function that creates a team and associates it with a gameID
-    API.createTeam(this.props.gameID)
-        //Then takes new team record and sets teamID state to teamID in database
-        .then( res => {
-            this.setState ({
-                teamID: res.data._id
-            });
-        })
-        //Then takes gameID and teamID to add team to a game record
-        .then( () => {
-            API.insertTeam(this.props.gameID, this.state.teamID)
-        })
-        //Then moves user to game as logged in
-        .then( () => this.handleLogin());
-}
 
 
     render(){
@@ -34,10 +18,11 @@ handleCreateTeam = () => {
             <Fragment>
             <Jumbotron />
             <div className = "btnDiv">
-                <button type= "button" className= "btn btn-success" id="google-btn" value={this.props.gameID} onClick={this.props.handleTeamNameCheck}>
-                    {/* <a href="http://localhost:8080/auth/google">Login with Google</a> */}
+                <a href="http://localhost:3001/auth/google/">
+                <button type= "button" className= "btn btn-success" id="google-btn" value={this.props.gameID} onClick={this.props.handleGoogleCreate}>
                     Login with Google
                 </button>
+                </a>
             </div>
             </Fragment>
 

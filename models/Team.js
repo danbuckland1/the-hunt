@@ -11,7 +11,13 @@ let TeamModel = new Schema({
         type: String,
         trim: true,
         required: true
+    },
+    googleID: {
+        type: String,
+        trim: true,
+        required: true
     }
+
 });
 
 const Team = mongoose.model("Team",TeamModel);

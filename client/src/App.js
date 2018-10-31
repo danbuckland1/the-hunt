@@ -11,6 +11,7 @@ import Wrapper from "./components/Wrapper";
 //Create/Join/Login form components
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
+import LoginGame from "./components/LoginGame";
 //Pages
 import Game from "./pages/Game";
 //Google Button
@@ -18,6 +19,9 @@ import GoogleButton from "./components/GoogleButton";
 //CSS file
 import "./App.css";
 import API from "./utils/API";
+import fire from "./firebase.js";
+
+const database = fire.database().ref("log");
 
 class App extends Component {
   //sets state of app to not logged in by default
@@ -28,16 +32,35 @@ class App extends Component {
     gameID: "",
     teamName: "Team1",
     teamID:"",
+    googleID:"",
     redirect: false
   };
 
-
+  componentDidMount(){
+    this.handleGoogleCreate()
+  }
   //KE Note: Temporary function that will change isLoggedIn state to true when called on.  We can change this later on.
   handleLogin = () => {
     this.setState({
       isLoggedIn: true
     });
   };
+
+//Function that captures googleID so that teams and games can be created later on
+  handleGoogleCreate = () => {
+    API.authenticate()
+    .then( res => {
+      if(res.data.user.googleId){
+        let googleid = res.data.user.googleId
+        this.setState({
+          googleID: googleid
+        })
+      }
+      else{
+        console.log("No googleId yet");
+      }
+    });
+  }
 
 //Function that handles creating a new game.  This gets passed onto CreateGame.js
   handleCreateGame = () => {
@@ -48,7 +71,8 @@ class App extends Component {
         this.setState({
           gameID: res.data._id
         });
-      });
+      })
+      .then( () => this.handleTeamNameCheck());
   }
 
   //Function that handles capturing a new game name.  This gets passed onto CreateGame.js
@@ -76,9 +100,7 @@ class App extends Component {
             //If it does...
             if(res) {
               //set redirect state to true
-              this.setState({
-                redirect: true
-              })
+              this.handleTeamNameCheck();
                 
             }//END of if(res)
             else {
@@ -96,9 +118,9 @@ class App extends Component {
   };
 
   //Function that handles database communication when a team is created
-  handleCreateTeam = (teamName, gameID) => {
+  handleCreateTeam = (teamName, gameID, googleID) => {
   //API function that creates a team and associates it with a gameID
-    API.createTeam(teamName, gameID)
+    API.createTeam(teamName, gameID, googleID)
       //Then takes new team record and sets teamID state to teamID in database
       .then( res => {
           this.setState ({
@@ -109,8 +131,11 @@ class App extends Component {
       .then( () => {
           API.insertTeam(this.state.gameID, this.state.teamID)
       })
+      .then ( () => {
+          this.handleTeamJoinMsg();
+      })
       //Then moves user to game as logged in
-      .then( () => this.handleLogin());
+      .then( () => this.handleLogin())
   }
 
 
@@ -146,17 +171,28 @@ class App extends Component {
             teamName: newTeamName
         });
         //Use new team name and game ID to create a new team record
-        this.handleCreateTeam(newTeamName, this.state.gameID)
+        this.handleCreateTeam(newTeamName, this.state.gameID, this.state.googleID)
       }
       //If it doesn't...
       else {
         //Create a team using gameID and Team 1
-        this.handleCreateTeam(this.state.teamName, this.state.gameID)
+        this.handleCreateTeam(this.state.teamName, this.state.gameID, this.state.googleID)
       }
     })
   }
 
+  handleTeamJoinMsg = () => {
+    let message = {
+      teamName: "GAME ANNOUNCEMENT",
+      text: this.state.teamName + " has joined the game."
+    }
+    database.push(message);
+  }
+
   gameID = this.state.gameID
+
+
+  
 
   render(gameID) {
     return (
@@ -166,6 +202,22 @@ class App extends Component {
             <Switch>
               {/* Passes along handleLogin function as a prop to CreateGame component */}
               {/* Conditional Route that will route to Game page if logged in or CreateGame page if not logged in */}
+              <Route
+                exact
+                path="/"
+                render={props =>
+                  this.state.isLoggedIn ? (
+                    <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
+                  ) : (
+                    <GoogleButton 
+                      {...props} 
+                      gameID={this.state.gameID} 
+                      handleLogin={this.handleLogin}
+                      handleTeamNameCheck={this.handleTeamNameCheck}
+                      handleGoogleCreate={this.handleGoogleCreate} />
+                  )
+                }
+              />
               <Route
                 path="/game/:gameid/:teamname"
                 render={props =>
@@ -178,7 +230,7 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/"
+                path="/create"
                 render={props =>
                   this.state.isLoggedIn ? (
                     <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
@@ -210,16 +262,16 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/auth/google"
+                path="/logingame"
                 render={props =>
                   this.state.isLoggedIn ? (
                     <Redirect to={`/game/${this.state.gameID}/${this.state.teamName}`} />
                   ) : (
-                    <GoogleButton 
-                      {...props} 
-                      gameID={this.state.gameID} 
-                      handleLogin={this.handleLogin}
-                      handleTeamNameCheck={this.handleTeamNameCheck} />
+                    <LoginGame 
+                      {...props}
+                      handleCreateGame={this.handleCreateGame}
+                      captureGameName={this.captureGameName}
+                      />
                   )
                 }
               />

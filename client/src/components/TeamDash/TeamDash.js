@@ -5,20 +5,6 @@ import "./TeamDash.css";
 
 
 class TeamDash extends Component{
-
-    //Conditions for rendering this page
-    //Challenge list is being generated from a .json file, instead we will need to pull it from the database
-        //When user logs in
-            //App will prompt user to create a game
-            //Game record will be created in Game table
-            //Team record will be created in Team table
-                //Link Team record with Game Record
-                //Generate a set of 10 challenges with IDs unique to Team and Game from a challenge template
-            //TeamDash will render challenges to page based on what is pulled from the database
-    //We will name Game ID
-    //We will need Team ID
-
-
     componentDidMount() {
         // console.log(this.props.match);
     }
@@ -44,7 +30,7 @@ class TeamDash extends Component{
                 {Challenges.map( (Challenges) => 
                     <div key={Challenges.id} id={Challenges.id} className="challenge-div">
                         <Link to={ `${this.props.match.url}/${Challenges.id}` }><h6 className="challenge-title">{Challenges.title}</h6></Link>
-                        <p className="status"><b>Completed:</b> {JSON.stringify(`${Challenges.complete}`).replace(/\"/g, "")}</p>
+                        <p className="status"><b>Completed:</b> Placeholder for challenges</p>
                         <p className="challenge-desc">{Challenges.description}</p>
                     </div>
                 )}

@@ -52,7 +52,7 @@ mongoose.connect(
 );
 
 //Construct Models
-const User = require("./models/user-model");
+const User = require("./models/user-model")(mongoose);
 const db = require("./models");
 
 //Initialize passport
@@ -107,7 +107,7 @@ passport.deserializeUser( (googleId, done) => {
     googleId: googleId
     })
     .then( user => {
-        console.log(user);
+        // console.log(user);
         done(null, user);
     })
     .catch( err => {
