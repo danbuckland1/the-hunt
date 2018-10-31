@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require("axios");
 const express = require("express");
 const firebase = require("firebase");
@@ -10,7 +11,7 @@ const react = require("react");
 const reactDom = require("react-dom");
 const reactRouterDom = require("react-router-dom");
 // const reactScripts = require("react-scripts");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const keys = require("./config/keys");
 const passportSetup = require("./config/passport-setup");
@@ -41,6 +42,7 @@ app.use(
   })
 );
 
+
 //Connecting to mongodb
 mongoose.connect(
   keys.mongodb.dbURI,{ useNewUrlParser: true },
@@ -64,8 +66,8 @@ var GoogleStrategy = require("passport-google-oauth20").Strategy;
 passport.use(
   new GoogleStrategy(
     {
-      clientID: keys.google.clientID,
-      clientSecret: keys.google.clientSecret,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK
     },
     function(accessToken, refreshToken, data, cb) {
