@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Jumbotron from "../Jumbotron/Jumbotron";
 import "../CreateGame/CreateGame.css";
-import API from "../../utils/API";
 
 
 class GoogleButton extends Component {

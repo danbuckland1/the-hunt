@@ -5,9 +5,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture of your team lounging in a place you find very relaxing.",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 50
     },
     {
         "id": 2,
@@ -15,9 +13,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture of your team hugging the biggest tree you can find",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 100
     },
     {
         "id": 3,
@@ -25,9 +21,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture of your team wearing something shiny",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 100
     },
     {
         "id": 4,
@@ -35,9 +29,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture next to something that starts with the letter Z",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 200
     },
     {
         "id": 5,
@@ -45,9 +37,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Find something red and have your team take a picture with it",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 50
     },
     {
         "id": 6,
@@ -55,9 +45,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture of your reflection in an unexpected place",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 200
     },
     {
         "id": 7,
@@ -65,9 +53,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Find a stranger willing to hug your entire team all at once and take a picture with them",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 300
     },
     {
         "id": 8,
@@ -75,9 +61,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Find or make a sidewalk chalk drawing and take a picture next to your masterpiece",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 300
     },
     {
         "id": 9,
@@ -85,9 +69,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Convince four strangers to spell out YMCA with their arms and snap a photo with them",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 200
     },
     {
         "id": 10,
@@ -95,10 +77,7 @@
         "complete": false,
         "photoURL":"",
         "description": "Take a picture of your whole team sitting down for a meal",
-        "value": 100,
-        "teamID": "",
-        "gameID": ""
+        "value": 400
     }
-    
-  ]
-  
+
+]

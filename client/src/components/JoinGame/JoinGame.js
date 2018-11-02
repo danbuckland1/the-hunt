@@ -10,7 +10,6 @@ class JoinGame extends Component {
         return(
             <Fragment>
                 <Jumbotron />
-                {this.props.handleRedirect()}
                 <div className="Join">
                     <h4 className="login-header">Join a Game</h4>
                         <label>Game ID:</label>

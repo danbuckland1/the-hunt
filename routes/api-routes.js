@@ -3,8 +3,8 @@ let db = require("../models/index");
 // module.exports = router;
 module.exports = function(app, passport, googleOauth, mongoose, db){
 
+//====================ROUTES FOR LOGIN/AUTHENTICATION====================
   app.get('/api/email', (req,res) => {
-    
     if(req.isAuthenticated()){
       console.log("Authenticated");
       res.json({
@@ -17,7 +17,6 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
     
   });
 
-
   app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -28,11 +27,8 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
       return req.user.googleId
   });
   
-  //Get game ID from database
-  //Get teamName from database
 
-
-//===================Begin API Routes for Creating Records===================
+//====================ROUTES FOR GAMES====================
 //Creates New Game to game collection
   app.post("/api/newgame", (req,res) => {
     db.Game.create(req.body)
@@ -54,16 +50,6 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
     })
   });
 
-  app.post("/api/newTeam", (req,res) => {
-    db.Team.create(req.body)
-    .then (results => {
-      res.json(results);
-    })
-    .catch (error => {
-      console.log(error);
-    })
-  })
-
   app.post("/api/insertTeam", (req,res) => {
     db.Game.findByIdAndUpdate(
       req.body.gameID, 
@@ -77,6 +63,18 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
       })
   })
 
+
+//====================ROUTES FOR TEAMS====================
+  app.post("/api/newTeam", (req,res) => {
+    db.Team.create(req.body)
+    .then (results => {
+      res.json(results);
+    })
+    .catch (error => {
+      console.log(error);
+    })
+  })
+
   app.get("/api/pullTeam/:gameid/:teamname", (req,res) => {
     db.Team.findOne({gameID: req.params.gameid, teamName: req.params.teamname}) 
       .then (results => {
@@ -87,6 +85,17 @@ module.exports = function(app, passport, googleOauth, mongoose, db){
       }) 
   })
   	 
- //====================End API Routes for Creating Records=====================
+//====================ROUTES FOR CHALLENGES====================
+
+app.post("/api/newteamdash", (req, res) => {
+  db.Challenge.create(req.body)
+    .then ( results => {
+      res.json(results);
+    })
+    .catch( error => {
+      console.log(error);
+    })
+});
+
 
 }//END module.exports

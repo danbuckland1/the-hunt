@@ -9,14 +9,14 @@ class TeamDash extends Component{
         // console.log(this.props.match);
     }
 
-    handleStatus = () => {
-        if(Challenges.complete){
+    handleStatus = (complete) => {
+        if(complete){
             let status = "Completed";
-            return console.log(status);
+            return status;
         }
         else {
             let status = "Not Completed";
-            return console.log(status);
+            return status;
         }
     }
 
@@ -29,9 +29,15 @@ class TeamDash extends Component{
                 <div className="challenges-listview">
                 {Challenges.map( (Challenges) => 
                     <div key={Challenges.id} id={Challenges.id} className="challenge-div">
-                        <Link to={ `${this.props.match.url}/${Challenges.id}` }><h6 className="challenge-title">{Challenges.title}</h6></Link>
-                        <p className="status"><b>Completed:</b> Placeholder for challenges</p>
-                        <p className="challenge-desc">{Challenges.description}</p>
+                        <Link to={
+                            {
+                                pathname: `${this.props.match.url}/${Challenges.id}`,
+                                state: { challID: `${Challenges.id}` }
+                            }
+                        }>
+                        <h6 className="challenge-titles">{Challenges.title}</h6></Link>
+                        <p className="statuses"><b>Status: </b>{this.handleStatus(Challenges.complete)}</p>
+                        <p className="challenge-descs">{Challenges.description}</p>
                     </div>
                 )}
                 </div>

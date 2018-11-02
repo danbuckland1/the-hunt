@@ -23,6 +23,9 @@ import axios from "axios";
     },
     createGoogleUser: () => {
         return axios.get("http://localhost:3001/auth/google/")
-    }
-    
+    },
+    createTeamDash: (teamID, gameID) => {
+        return axios.post("/api/newteamdash", {teamID: teamID, gameID: gameID});
+    },
+
  };//END export default

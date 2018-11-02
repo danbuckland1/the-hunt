@@ -14,11 +14,11 @@
     padding: 10px;
 }
 
-.challenge-title{
+.challenge-titles{
     font-weight: bold;
 }
 
-.challenge-desc, .status {
+.challenge-descs, .statuses {
     padding: 0px;
     margin: 0px;
 }

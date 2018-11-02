@@ -37,8 +37,10 @@ class App extends Component {
   };
 
   componentDidMount(){
-    this.handleGoogleCreate()
+    this.handleGoogleCreate();
   }
+ 
+  //====================FUNCTIONS FOR LOGIN====================
   //KE Note: Temporary function that will change isLoggedIn state to true when called on.  We can change this later on.
   handleLogin = () => {
     this.setState({
@@ -62,6 +64,7 @@ class App extends Component {
     });
   }
 
+//====================FUNCTIONS FOR GAME====================
 //Function that handles creating a new game.  This gets passed onto CreateGame.js
   handleCreateGame = () => {
     //API call that creates game in database
@@ -109,14 +112,8 @@ class App extends Component {
         })
             
   }
-  
-  //Function that redirects user if redirect state is set to true.  This is passed to JoinGame.js
-  handleRedirect = () => {
-    if (this.state.redirect){
-        return <Redirect to="/auth/google" />
-     }
-  };
 
+//====================FUNCTIONS FOR TEAM====================
   //Function that handles database communication when a team is created
   handleCreateTeam = (teamName, gameID, googleID) => {
   //API function that creates a team and associates it with a gameID
@@ -191,10 +188,23 @@ class App extends Component {
 
   gameID = this.state.gameID
 
+  //====================FUNCTIONS FOR CHALLENGES====================
+  handleCreateTeamDash = () => {
+  }
 
-  
+  handleAddChallenges = () => { 
+  }
 
-  render(gameID) {
+  handleRenderChallenges = () => {
+
+  }
+
+  handleUpdateChallenges = () =>{
+
+  }
+
+//====================RENDER TO PAGE====================
+  render() {
     return (
       <Wrapper>
         <Router>

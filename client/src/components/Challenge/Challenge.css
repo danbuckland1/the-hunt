@@ -1,0 +1,29 @@
+.challenge-view{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#challImg{
+    width: 75%;
+    border-radius: 20px;
+}
+
+.challenge-properties, .img-upload {
+    padding: 20px;
+    text-align: center;
+}
+
+#upload-btn{
+    display: block;
+    margin: 1rem auto .5rem auto; 
+    border-radius: 30px;
+    background-color:#5BA276;
+    border-color: #5BA276;
+    color: white;
+}

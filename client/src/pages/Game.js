@@ -7,7 +7,6 @@ import TeamDash from "../components/TeamDash";
 import Leaderboard from "../components/Leaderboard";
 import GameHeader from "../components/GameHeader";
 import Challenge from "../components/Challenge";
-import API from "../utils/API";
 
 
 class Game extends Component {
